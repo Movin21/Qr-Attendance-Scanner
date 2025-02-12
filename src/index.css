@@ -4,9 +4,9 @@
 
 /* ... */
 @font-face {
-  font-family: "Brodish";
-  src: url("/fonts/Brodish.ttf") format("ttf"),
-    url("/fonts/Brodish.tff") format("tff");
+  font-family: "brodish";
+  src: url("/fonts/brodish.otf") format("otf"),
+    url("/fonts/brodish.otf") format("otf");
   font-weight: normal;
   font-style: normal;
 }
@@ -121,4 +121,16 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
 }

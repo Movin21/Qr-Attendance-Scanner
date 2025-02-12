@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        brodish: ["Brodish", "sans-serif"],
+        brodish: ["brodish", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -76,7 +76,7 @@ const QRScanner: React.FC = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzfxzGK1XWTlxNZbKz7-Dkf5c9wdq-UqLCCQ_wJABkptbEpNGsg22P7cHQFpw74-ZC0Cw/exec",
+        "https://script.google.com/macros/s/AKfycbxdFIvMwEZuY3rL0hFMI22biQstQNsC4t90S0mM0NNd_zd2_Zhm_2EmA9cmCXMcFehxsA/exec",
         {
           redirect: "follow",
           method: "POST",
@@ -121,7 +121,7 @@ const QRScanner: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-6xl">
+    <div className="container mx-auto p-6 max-w-6xl relative min-h-screen">
       {notification && (
         <Notification
           message={notification.message}
@@ -130,12 +130,29 @@ const QRScanner: React.FC = () => {
         />
       )}
 
-      <h1 className="text-5xl font-bold mb-8 text-center font-brodish">
-        Attendance Scanner
+      {/* Background elements with random positioning */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {/* Random positioned asterisks */}
+        <div className="absolute w-32 h-32 bg-[url('/asteric4.png')] bg-contain bg-no-repeat top-[15%] left-[0%] animate-spin-slow"></div>
+        <div className="absolute w-28 h-28 bg-[url('/asteric4.png')] bg-contain bg-no-repeat top-[25%] right-[5%] animate-spin-slow"></div>
+        <div className="absolute w-40 h-40 bg-[url('/asteric4.png')] bg-contain bg-no-repeat bottom-[20%] left-[2%] animate-spin-slow"></div>
+        <div className="absolute w-24 h-24 bg-[url('/asteric4.png')] bg-contain bg-no-repeat top-[0%] right-[2%] animate-spin-slow"></div>
+        <div className="absolute w-40 h-40 bg-[url('/asteric4.png')] bg-contain bg-no-repeat bottom-[0%] right-[0%] animate-spin-slow"></div>
+        <div className="absolute w-28 h-28 bg-[url('/asteric4.png')] bg-contain bg-no-repeat top-[0%] left-[20%] animate-spin-slow"></div>
+        <div className="absolute w-32 h-32 bg-[url('/asteric4.png')] bg-contain bg-no-repeat bottom-[0%] left-[20%] animate-spin-slow"></div>
+        <div className="absolute w-36 h-36 bg-[url('/asteric4.png')] bg-contain bg-no-repeat top-[0%] right-[25%] animate-spin-slow"></div>
+        <div className="absolute w-24 h-24 bg-[url('/asteric4.png')] bg-contain bg-no-repeat bottom-[1%] right-[30%] animate-spin-slow"></div>
+
+        {/* Center asterisk - slightly lower opacity to be more subtle */}
+        <div className="absolute w-40 h-40 bg-[url('/asteric4.png')] bg-contain bg-no-repeat top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-spin-slow "></div>
+      </div>
+
+      <h1 className="text-5xl font-bold mb-8 text-center font-brodish tracking-widest relative z-10">
+        QR Attendance Scanner
       </h1>
 
-      <div className="grid lg:grid-cols-2 gap-8">
-        <Card>
+      <div className="grid lg:grid-cols-2 gap-8 relative z-10">
+        <Card className="bg-white/20 backdrop-blur-sm">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
@@ -152,7 +169,7 @@ const QRScanner: React.FC = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="bg-white/30 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle>Recently Scanned Tickets</CardTitle>
@@ -177,7 +194,7 @@ const QRScanner: React.FC = () => {
                         </div>
                         <Badge
                           variant={
-                            status === "Attended" ? "success" : "destructive"
+                            status === "Attended" ? "default" : "destructive"
                           }
                         >
                           {status}
